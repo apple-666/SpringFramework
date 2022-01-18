@@ -1,6 +1,10 @@
 package com.apple;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @Author Double_apple
@@ -8,12 +12,20 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 //@Component: 创建类的对象，等同于<bean />，默认是单例对象 value 等同于 id
-@Component(value = "student")
+@Component("student")
 public class Student {
+
+
+//    @Value("apple")
+    @Value("${arg1}")
     private String name;
+
+    @Value("21")
     private int age;
 
     //引用类型
+//    @Autowired   默认用 bytype
+    @Resource   // 默认用  先用byname  找不到再用 bytype
     private  School school;
 
     public Student() {
