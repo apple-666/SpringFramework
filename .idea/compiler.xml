@@ -7,13 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Spring-03-Annotation" />
+        <module name="Spring-04-SpringAop" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Spring-01-Start" target="1.8" />
       <module name="Spring-02-Di" target="1.8" />
       <module name="Spring-03-Annotation" target="1.8" />
+      <module name="Spring-04-SpringAop" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
