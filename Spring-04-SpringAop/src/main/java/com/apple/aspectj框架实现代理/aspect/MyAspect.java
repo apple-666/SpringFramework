@@ -13,7 +13,8 @@ import java.util.Date;
 @Aspect
 public class MyAspect {
 
-    @Before("execution(public * *(..))")
+//    @Before("execution(public * *(..))")
+    @Before("execution(public void com.apple.aspectj框架实现代理.service.impl.SserviceImpl.doSome())")
     public void showTime() {
         System.out.println(new Date());
     }
