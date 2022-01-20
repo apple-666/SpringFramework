@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--标明哪个properties-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--    用set注入  数据库数据-->
+    <bean id="myDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close" >
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.uname}"/>
+        <property name="password" value="${jdbc.pword}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource"/>
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+    </bean>
+
+    <!--    dao对象 使用sqlsession中的getmapper-->
+    <!--    dao类默认对象是 首字母小写的类名-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.apple.dao"/>
+    </bean>
+
+<!--    com.apple.service.impl.BuyGoodsServiceImpl必须要有对应的空构造+goodDao，saleDao的set方法，才能注入-->
+    <bean id="buyGoodsService" class="com.apple.service.impl.BuyGoodsServiceImpl">
+        <property name="goodDao" ref="goodDao"/>
+        <property name="saleDao" ref="saleDao"/>
+    </bean>
+
+<!--    加入aspectj的事务处理-->
+<!--    1,声明事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="myDataSource"/>
+    </bean>
+<!--    2,声明业务方法的事务属性（隔离级别，传播行为，超时时间）
+            id为自定义名称-->
+    <tx:advice id="appleAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+<!--            name为方法名  由上到下选取事务属性-->
+            <tx:method name="buy" propagation="REQUIRED" isolation="DEFAULT"
+                rollback-for="NullPointerException,NotEnoughException"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="modify*" />
+            <tx:method name="delete*"/>
+            <tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+<!--    定义哪些包下要使用上面事务属性-->
+    <aop:config>
+<!--        experssion 表示 类名中有service的 所有返回值类型 和 所有类名（任何参数）-->
+        <aop:pointcut id="serviceAll" expression="execution(* *..service..*.*(..))"/>
+        <aop:advisor advice-ref="appleAdvice" pointcut-ref="serviceAll"/>
+    </aop:config>
+
+</beans>

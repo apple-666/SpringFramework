@@ -7,9 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Spring-06-SpringTransaction" />
-        <module name="Spring-05-SpringMybatis" />
+        <module name="Spring-09-SpringWeb" />
         <module name="Spring-04-SpringAop" />
+        <module name="Spring-05-SpringMybatis" />
+        <module name="Spring-06-SpringTransaction" />
+        <module name="SpringTransaction" />
+        <module name="SpringTransAnno" />
+        <module name="SpringTranAspectj" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +23,11 @@
       <module name="Spring-04-SpringAop" target="1.8" />
       <module name="Spring-05-SpringMybatis" target="1.8" />
       <module name="Spring-06-SpringTransaction" target="1.8" />
+      <module name="Spring-09-SpringWeb" target="1.8" />
+      <module name="SpringTranAnno" target="1.8" />
+      <module name="SpringTranAspectj" target="1.8" />
+      <module name="SpringTransaction" target="1.8" />
+      <module name="SpringTransAnno" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

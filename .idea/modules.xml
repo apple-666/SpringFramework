@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/Spring-04-SpringAop/Spring-04-SpringAop.iml" filepath="$PROJECT_DIR$/Spring-04-SpringAop/Spring-04-SpringAop.iml" />
       <module fileurl="file://$PROJECT_DIR$/Spring-05-SpringMybatis/Spring-05-SpringMybatis.iml" filepath="$PROJECT_DIR$/Spring-05-SpringMybatis/Spring-05-SpringMybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/Spring-06-SpringTransaction/Spring-06-SpringTransaction.iml" filepath="$PROJECT_DIR$/Spring-06-SpringTransaction/Spring-06-SpringTransaction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spring-09-SpringWeb/Spring-09-SpringWeb.iml" filepath="$PROJECT_DIR$/Spring-09-SpringWeb/Spring-09-SpringWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spring-08-SpringTranAspectj/SpringTranAspectj.iml" filepath="$PROJECT_DIR$/Spring-08-SpringTranAspectj/SpringTranAspectj.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spring-07-SpringTranAnno/SpringTransAnno.iml" filepath="$PROJECT_DIR$/Spring-07-SpringTranAnno/SpringTransAnno.iml" />
     </modules>
   </component>
 </project>
