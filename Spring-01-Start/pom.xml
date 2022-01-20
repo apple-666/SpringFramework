@@ -11,6 +11,7 @@
   <modules>
     <module>../Spring-02-Di</module>
       <module>../Spring-05-SpringMybatis</module>
+      <module>../Spring-06-SpringTransaction</module>
   </modules>
 
   <name>SpringStart</name>

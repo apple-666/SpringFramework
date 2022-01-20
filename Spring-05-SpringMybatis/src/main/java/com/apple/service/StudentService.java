@@ -9,7 +9,7 @@ import java.util.List;
  * @Date 2022/1/20 0:33
  * @Version 1.0
  */
-public interface SomeService {
+public interface StudentService {
     List<Student> queryStudent();
     int addStudent(Student student);
 }
